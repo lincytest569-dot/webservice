@@ -23,9 +23,16 @@ jobs:
       contents: read
       pull-requests: read
     steps:
-      - name: Notify Cliq via GitHub Informer
-        uses: Lincy-Zoho/Github-Informer@v1 
+      - name: Call Zoho Catalyst Function
+        uses: ./.github/actions/catalyst-function-call
         with:
-          channel-endpoint: ${{ secrets.ENDPOINT }}
-          pull-request-message: "[From GitHub Informer Action] Pull request event received from GitHub."
-          workflow-dispatch-message: "[From GitHub Informer Action] Manual workflow dispatch received."
+          catalyst-function-url: ${{ secrets.CATALYST_FUNCTION_URL }}
+          endpoint: ${{ secrets.ENDPOINT }}
+          event-name: ${{ github.event_name }}
+          event-action: ${{ github.event.action }}
+          actor: ${{ github.actor }}
+          repo: ${{ github.repository }}
+          ref: ${{ github.ref }}
+          run-id: ${{ github.run_id }}
+          pr-number: ${{ github.event.pull_request.number }}
+          label-name: ${{ github.event.label.name }}
