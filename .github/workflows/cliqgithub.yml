@@ -1,0 +1,31 @@
+name: Communicating with Catalyst
+
+on:
+  push:
+  pull_request:
+    types: [opened, reopened, synchronize, labeled, unlabeled, closed]
+  issues:
+    types: [opened, edited, closed, reopened, labeled, unlabeled]
+  issue_comment:
+    types: [created, edited]
+  pull_request_review:
+    types: [submitted, edited, dismissed]
+  pull_request_review_comment:
+    types: [created, edited]
+  release:
+    types: [published, edited]
+  workflow_dispatch:
+
+jobs:
+  trigger_catalyst_function:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
+    steps:
+      - name: Notify Cliq via GitHub Informer
+        uses: Lincy-Zoho/Github-Informer@v1 
+        with:
+          channel-endpoint: ${{ secrets.ENDPOINT }}
+          pull-request-message: "[From GitHub Informer Action] Pull request event received from GitHub."
+          workflow-dispatch-message: "[From GitHub Informer Action] Manual workflow dispatch received."
