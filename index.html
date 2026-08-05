@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modern Sign In</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(-45deg,#667eea,#764ba2,#6a11cb,#2575fc);
+    background-size:400% 400%;
+    animation:gradient 12s ease infinite;
+}
+
+@keyframes gradient{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+}
+
+.container{
+
+    width:390px;
+    padding:40px;
+    border-radius:20px;
+
+    background:rgba(255,255,255,.15);
+    backdrop-filter:blur(15px);
+    -webkit-backdrop-filter:blur(15px);
+
+    border:1px solid rgba(255,255,255,.2);
+
+    box-shadow:0 20px 40px rgba(0,0,0,.2);
+
+}
+
+.logo{
+
+    width:70px;
+    height:70px;
+    border-radius:50%;
+    margin:auto;
+    margin-bottom:20px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:white;
+    font-size:32px;
+}
+
+h2{
+
+    text-align:center;
+    color:white;
+    margin-bottom:8px;
+
+}
+
+.subtitle{
+
+    color:#eee;
+    text-align:center;
+    font-size:14px;
+    margin-bottom:30px;
+
+}
+
+.input-group{
+
+    margin-bottom:18px;
+    position:relative;
+
+}
+
+.input-group input{
+
+    width:100%;
+    padding:14px 45px 14px 15px;
+
+    border:none;
+    outline:none;
+
+    border-radius:10px;
+
+    background:rgba(255,255,255,.2);
+
+    color:white;
+    font-size:15px;
+
+}
+
+.input-group input::placeholder{
+
+    color:#f1f1f1;
+
+}
+
+.icon{
+
+    position:absolute;
+    right:15px;
+    top:50%;
+    transform:translateY(-50%);
+    cursor:pointer;
+    color:white;
+
+}
+
+.options{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin:18px 0;
+
+    color:white;
+    font-size:14px;
+
+}
+
+.options a{
+
+    color:white;
+    text-decoration:none;
+
+}
+
+button{
+
+    width:100%;
+    padding:14px;
+
+    border:none;
+    border-radius:10px;
+
+    background:white;
+    color:#4f46e5;
+
+    font-size:16px;
+    font-weight:600;
+
+    cursor:pointer;
+    transition:.3s;
+
+}
+
+button:hover{
+
+    transform:translateY(-2px);
+    box-shadow:0 10px 20px rgba(0,0,0,.2);
+
+}
+
+.divider{
+
+    text-align:center;
+    color:white;
+    margin:25px 0;
+    position:relative;
+
+}
+
+.divider::before,
+.divider::after{
+
+    content:"";
+    position:absolute;
+    width:35%;
+    height:1px;
+    background:rgba(255,255,255,.4);
+    top:50%;
+
+}
+
+.divider::before{
+    left:0;
+}
+
+.divider::after{
+    right:0;
+}
+
+.social{
+
+    display:flex;
+    gap:15px;
+
+}
+
+.social button{
+
+    background:rgba(255,255,255,.2);
+    color:white;
+    border:1px solid rgba(255,255,255,.3);
+
+}
+
+.social button:hover{
+
+    background:white;
+    color:#333;
+
+}
+
+.signup{
+
+    margin-top:25px;
+    text-align:center;
+    color:white;
+    font-size:14px;
+
+}
+
+.signup a{
+
+    color:#fff;
+    font-weight:600;
+    text-decoration:none;
+
+}
+
+@media(max-width:430px){
+
+.container{
+
+    width:92%;
+    padding:30px;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="logo">
+🔐
+</div>
+
+<h2>Welcome Back</h2>
+
+<p class="subtitle">Sign in to continue</p>
+
+<form>
+
+<div class="input-group">
+<input type="email" placeholder="Email Address" required>
+</div>
+
+<div class="input-group">
+<input type="password" id="password" placeholder="Password" required>
+<span class="icon" onclick="togglePassword()">👁️</span>
+</div>
+
+<div class="options">
+
+<label>
+<input type="checkbox">
+ Remember me
+</label>
+
+<a href="#">Forgot Password?</a>
+
+</div>
+
+<button type="submit">
+Sign In
+</button>
+
+<div class="divider">
+OR
+</div>
+
+<div class="social">
+
+<button type="button">
+🌐 Google
+</button>
+
+<button type="button">
+🐙 GitHub
+</button>
+
+</div>
+
+<div class="signup">
+
+Don't have an account?
+<a href="#">Create Account</a>
+
+</div>
+
+</form>
+
+</div>
+
+<script>
+
+function togglePassword(){
+
+const pwd=document.getElementById("password");
+
+pwd.type=(pwd.type==="password")?"text":"password";
+
+}
+
+</script>
+
+</body>
+</html>
