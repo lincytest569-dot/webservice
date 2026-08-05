@@ -23,16 +23,8 @@ jobs:
       contents: read
       pull-requests: read
     steps:
-      - name: Call Zoho Catalyst Function
-        uses: ./.github/actions/catalyst-function-call
+      - name: Notify Through Github-Informer Action
+        uses: Lincy-Zoho/Github-Informer@v1
         with:
-          catalyst-function-url: ${{ secrets.CATALYST_FUNCTION_URL }}
           endpoint: ${{ secrets.ENDPOINT }}
-          event-name: ${{ github.event_name }}
-          event-action: ${{ github.event.action }}
-          actor: ${{ github.actor }}
-          repo: ${{ github.repository }}
-          ref: ${{ github.ref }}
-          run-id: ${{ github.run_id }}
-          pr-number: ${{ github.event.pull_request.number }}
-          label-name: ${{ github.event.label.name }}
+          catalyst-function-url: ${{ secrets.CATALYST_FUNCTION_URL }}
