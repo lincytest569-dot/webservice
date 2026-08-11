@@ -240,10 +240,11 @@ jobs:
           echo "PR inserted into project table successfully."
 
       - if: ${{ github.event_name != 'pull_request' && github.event_name != 'pull_request_target' }}
-        uses: Lincy-Zoho/GitHub-Informer-New@v2.6
+        uses: Lincy-Zoho/GitHub-Informer-New@v2.7
         env:
-          # Use explicit PAT for private ProjectV2 reads/writes.
-          GITHUB_TOKEN: ${{ secrets.PROJECT_TOKEN }}
+          # Use workflow token for repo/PR APIs; use PROJECT_TOKEN only for ProjectV2 operations.
+          GITHUB_TOKEN: ${{ github.token }}
+          PROJECT_TOKEN: ${{ secrets.PROJECT_TOKEN }}
           # Previous mode (PR marker comment storage):
           # CLIQ_THREAD_STORAGE_MODE: comment
           CLIQ_THREAD_STORAGE_MODE: project
@@ -292,10 +293,11 @@ jobs:
           #false makes GitHub-Informer not send the default messages if custom message is not set
 
       - if: ${{ github.event_name == 'pull_request_target' }}
-        uses: Lincy-Zoho/GitHub-Informer-New@v2.6
+        uses: Lincy-Zoho/GitHub-Informer-New@v2.7
         env:
-          # Use explicit PAT for private ProjectV2 reads/writes.
-          GITHUB_TOKEN: ${{ secrets.PROJECT_TOKEN }}
+          # Use workflow token for repo/PR APIs; use PROJECT_TOKEN only for ProjectV2 operations.
+          GITHUB_TOKEN: ${{ github.token }}
+          PROJECT_TOKEN: ${{ secrets.PROJECT_TOKEN }}
           # Previous mode (PR marker comment storage):
           # CLIQ_THREAD_STORAGE_MODE: comment
           CLIQ_THREAD_STORAGE_MODE: project
